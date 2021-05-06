@@ -11,6 +11,10 @@
                         <p>
                             <a class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</a>
                             <a href="{{url('purchase_order')}}" class="btn btn-sm btn-flat btn-primary btn-backward"><i class="fa fa-backward"></i> Kembali</a>
+                            @if($data->status==2)
+                            <a target="_blank" href="{{url('purchase_order/pdf/'.$data->id)}}" class="btn btn-sm btn-flat btn-success btn-print"><i class="fa fa-print"></i> Cetak ke PDF</a>
+                            @else
+                            @endif
                         </p>
                     </div>
                     <div class="box-body">
@@ -95,7 +99,7 @@
                                     <input type="number" class="form-control" name="buy[]" value="{{$ln->buy}}">
                                     </td>
                                     @else
-                                        <td>{{$ln->buy}}</td>
+                                        <td>Rp. {{number_format($ln->buy)}}</td>
                                     @endif
                                     <td>Rp. {{ number_format($ln->grand_total,0) }}</td>
                                     <td>

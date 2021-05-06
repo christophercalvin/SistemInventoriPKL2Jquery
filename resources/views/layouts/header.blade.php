@@ -25,22 +25,28 @@
       
       <!-- User Account: style can be found in dropdown.less -->
       
-
+      <?php
+        $stock=\DB::select('SELECT * from produks where stock < minimal_stock');
+      ?>
       <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">0</span>
+              @foreach($stock as $s=>$stc)
+              <span class="label label-warning">{{$s+1}}</span>
+              @endforeach
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have reservasi</li>
+              <li class="header">Notifikasi Produk</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
+                  @foreach($stock as $st)
                   <li>
                     <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> tes
+                      <i class="fa fa-warning text-yellow"></i> {{st->nama}}
                     </a>
                   </li>
+                  @endforeach
                 </ul>
               </li>
               <li class="footer"><a href="{{ url('jadwal-reservasi') }}">View all</a></li>

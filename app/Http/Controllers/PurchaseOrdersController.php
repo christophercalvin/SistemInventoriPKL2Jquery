@@ -10,6 +10,8 @@ use App\Models\PurchaseOrdersLine;
 use App\Models\PurchaseOrders;
 use App\Models\M_status;
 use App\Models\GoodsReceipt;
+use App\Models\PenanggungJawab;
+use PDF;
 
 class PurchaseOrdersController extends Controller
 {
@@ -60,6 +62,7 @@ class PurchaseOrdersController extends Controller
                 ]);
             }
             \Session::flash('sukses','PO Berhasil Dibuat!');
+            return redirect ('/purchase_order');
         }
         catch(\Exception $e){
             \Session::flash('gagal',$e->getMessage());
@@ -140,6 +143,21 @@ class PurchaseOrdersController extends Controller
         }catch(\Exception $e){
             \Session::flash('Gagal',$e->getMessage());
         }
+        return redirect()->back();
+    }
+
+    public function pdf($id){
+        try {
+            $dt = PurchaseOrders::with('suppliers')->find($id);
+            $pj=PenanggungJawab::first();
+ 
+            $pdf = PDF::loadview('po.pdf',compact('dt','pj'))->setPaper('a4', 'potrait');
+            return $pdf->stream();
+ 
+        } catch (\Exception $e) {
+            \Session::flash('gagal',$e->getMessage().' ! '.$e->getLine());
+        }
+ 
         return redirect()->back();
     }
 }

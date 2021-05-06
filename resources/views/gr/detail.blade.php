@@ -9,6 +9,14 @@
             <div class="box-header">
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
+                    <a href="{{url('goods_receipts')}}" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-backward"></i> Kembali</a>
+
+                    @if($dt->status==1)
+                    <button class="btn btn-sm btn-flat btn-success btn-approved"><i class="fa fa-check-circle-o"></i> Setujui Dokumen Ini</button>
+                    @else
+
+                    @endif
+                    
                 </p>
             </div>
             <div class="box-body">
@@ -83,12 +91,46 @@
                         </table>
                     </div>  
                 </div>
-
-
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal Approved -->
+
+<div class="modal fade" id="modal-approved" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+      <div class="modal-dialog modal-default modal-dialog-centered modal-" role="document">
+        <div class="modal-content bg-gradient-danger">
+ 
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal-title-notification">Your attention is required</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+ 
+          <div class="modal-body">
+ 
+            <div class="py-3 text-center">
+              <i class="ni ni-bell-55 ni-3x"></i>
+              <h4 class="heading mt-4">Apakah kamu yakin ingin menyetujui dokumen ini?</h4>
+            </div>
+ 
+          </div>
+ 
+          <div class="modal-footer">
+            <form action="{{ url('/goods_receipt/'.$dt->id) }}" method="post">
+              {{ csrf_field() }}
+              <p>
+              <button type="submit" class="btn btn-primary btn-flat btn-sm menu-sidebar">Ok, Setujui</button>
+                <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Batal</button>
+              </p>
+            </form>
+          </div>
+ 
+        </div>
+      </div>
+    </div>
  
 @endsection
  
@@ -96,6 +138,10 @@
  
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $('.btn-approved').click(function(){
+            $('#modal-approved').modal();
+        })
  
         // btn refresh
         $('.btn-refresh').click(function(e){

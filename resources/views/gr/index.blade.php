@@ -13,7 +13,7 @@
             </div>
             <div class="box-body">
                <div class="table-responsive">
-                <table class="table table-stripped">
+                <table class="table myTable">
                     <thead>
                         <tr>
                             <th>ID</th>

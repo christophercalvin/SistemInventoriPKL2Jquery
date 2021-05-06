@@ -50,10 +50,31 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/purchase_order/{id}','PurchaseOrdersController@detail');
     Route::put('/purchase_order/{id}','PurchaseOrdersController@update');
     Route::delete('/purchase_order/line/{id}', 'PurchaseOrdersController@hapus_line');
+    Route::get('/purchase_order/pdf/{id}','PurchaseOrdersController@pdf');
 
     //Manage Good Receipt
     Route::get('/goods_receipts','GoodsReceiptController@index');
     Route::get('/goods_receipt/{id}','GoodsReceiptController@detail');
+    Route::post('/goods_receipt/{id}','GoodsReceiptController@approved');
+
+
+    //Pengeluaran Barang
+    Route::get('/pengeluaran','PengeluaranController@index');
+    Route::post('/pengeluaran','PengeluaranController@store');
+    Route::get('/produk/ajax/{nama}','PengeluaranController@get_produk');
+
+    //sales
+    Route::get('/sales','SalesController@index');
+    Route::get('/sales/{id}','SalesController@detail');
+    Route::get('sales/filter','SalesController@filter');
+
+
+    //update penanggung jawab
+    Route::get('/update_penanggung_jawab','PenanggungJawabController@index');
+    Route::post('/update_penanggung_jawab','PenanggungJawabController@update');
+
+    //notifikasi
+    Route::get('/notifikasi','NotifikasiController@index');
 });
 
 Auth::routes();

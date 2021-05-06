@@ -14,10 +14,10 @@
                         </p>
                     </div>
                     <div class="box-body">
-                        <table class="table table-stripped">
+                        <table class="table myTable">
                             <thead>
                                 <tr>
-                                    <th> ID </th>
+                                    <th> No. </th>
                                     <th> Document Number </th>
                                     <th> Supplier </th>
                                     <th> Jenis Barang </th>
@@ -29,9 +29,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $dt)
+                                @foreach ($data as $e=>$dt)
                                 <tr>
-                                    <td>{{$dt->id}}</td>
+                                    <td>{{$e+1}}</td>
                                     <td>{{$dt->document_number}}</td>
                                     <td>{{$dt->suppliers->nama}}</td>
                                     <td>{{$dt->lines_count}}</td>

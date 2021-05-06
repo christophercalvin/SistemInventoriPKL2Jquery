@@ -21,9 +21,9 @@
                  </div>
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table myTable">
                             <thead>
-                                <th><center>ID Supplier</center></th>
+                                <th><center>No.</center></th>
                                 <th><center>Nama Supplier</center></th>
                                 <th><center>Alamat</center></th>
                                 <th><center>Nomor Telepon</center></th>
@@ -32,14 +32,14 @@
                                 <th><center>Action</center></th>
                             </thead>
                             <tbody>
-                                @foreach($data as $supplier)
+                                @foreach($data as $e=>$supplier)
                                 <tr>
-                                    <td><center>{{$supplier->id}}</center></td>
+                                    <td><center>{{$e+1}}</center></td>
                                     <td><center>{{$supplier->nama}}</center></td>
                                     <td><center>{{$supplier->alamat}}</center></td>
                                     <td><center>{{$supplier->telepon}}</center></td>
-                                    <td><center>{{$supplier->created_at}}</center></td>
-                                    <td><center>{{$supplier->updated_at}}</center></td>
+                                    <td><center>{{date('d M Y H:i:s',strtotime($supplier->created_at))}}</center></td>
+                                    <td><center>{{date('d M Y H:i:s',strtotime($supplier->updated_at))}}</center></td>
                                     <td>
                                     <center>
                                         <a href="{{url('supplier/'.$supplier->id) }}" class="btn btn-warning" id="edit">Edit</a> 

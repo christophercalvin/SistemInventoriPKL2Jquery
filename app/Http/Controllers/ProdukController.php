@@ -33,12 +33,12 @@ class ProdukController extends Controller
             'supplier'=>'required',
             'nama'=>'required',
             'kode'=>'required',
-            'stock'=>'required',
             'minimal_stock'=>'required',
             'harga'=>'required',
         ]);
 
         $data=$request->except(['_token']);
+        $data['stock']=0;
         $data['created_at'] = date("Y-m-d H:i:s");
         $data['updated_at'] = date("Y-m-d H:i:s");
         
@@ -63,13 +63,13 @@ class ProdukController extends Controller
             'supplier'=>'required',
             'nama'=>'required',
             'kode'=>'required',
-            'stock'=>'required',
             'minimal_stock'=>'required',
             'harga'=>'required',
         ]);
 
         $data=$request->except(['_token','_method']);
         $data['updated_at'] = date("Y-m-d H:i:s");
+        $data['stock'] =0;
 
         Produk::where('id', $id)->update($data);
         \Session::flash('sukses', 'Data Berhasil Diupdate');

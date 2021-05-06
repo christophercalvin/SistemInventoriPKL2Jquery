@@ -52,11 +52,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputStockProduk">Stock Produk</label>
-                            <input type="number" name="stock" class="form-control" id="exampleInputStockProduk" placeholder="Stock Produk Saat Ini ex: 13">
-                        </div>
-
-                        <div class="form-group">
                             <label for="exampleInputStockProdukMinimal">Stock Produk Minimal</label>
                             <input type="number" name="minimal_stock" class="form-control" id="exampleInputStockProdukMinimal" placeholder="Set Stock Minimal Agar System Mengingatkan Anda Jika Stok Kurang dari Minimal ex: 1">
                         </div>
